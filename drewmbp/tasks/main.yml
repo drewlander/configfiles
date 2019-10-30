@@ -50,7 +50,18 @@
   copy:
     src=/tmp/drewmbpconfigfiles/.hammerspoon
     dest=~/.hammerspoon
- 
+
+- name: download as_spaces for hammerspoon
+  get_url:
+    url: https://github.com/asmagill/hs._asm.undocumented.spaces/releases/download/v0.5/spaces-v0.5.tar.gz
+    dest: ~/.hammerspoon/spaces-v0.5.tar.gz
+
+- name: extract spaces
+  command: tar -xzf spaces-v0.5.tar.gz
+  args:
+   chdir:  ~/.hammerspoon
+
+-
 - name: Copying aliases file
   copy:
     src=/tmp/drewmbpconfigfiles/.aliases
@@ -138,4 +149,5 @@
   file:
     path: ~/.nvm
     state: directory
- 
+
+  
