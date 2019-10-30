@@ -1,0 +1,89 @@
+---
+# tasks file for drewmbp
+
+- name: Cloning configfiles
+  git:
+    repo=https://github.com/drewlander/configfiles.git
+    dest=/tmp/drewmbpconfigfiles
+  register: drewmbpcloning
+
+
+- name: Cloning  oh-my-zsh
+  git:
+    repo=https://github.com/robbyrussell/oh-my-zsh
+    dest=~/.oh-my-zsh
+  register: ohmyzshcloning
+
+- name: Creating new ~/.zshrc
+  copy:
+    src=/tmp/drewmbpconfigfiles/.zshrc
+    dest=~/.zshrc
+  when: ohmyzshcloning|success
+
+- name: Cloning spaceship-prompt
+  git:
+   repo=https://github.com/denysdovhan/spaceship-prompt.git
+   dest=~/.oh-my-zsh/themes/spaceship-prompt
+
+- name: check if spaceship alias already exists
+  stat:
+    path: ~/.oh-my-zsh/themes/spaceship.zsh-theme
+  register: spaceshipinstalled
+
+- name: symlink spaceship theme
+  command: ln -s ~/.oh-my-zsh/themes/spaceship-prompt/spaceship.zsh-theme ~/.oh-my-zsh/themes/spaceship.zsh-theme
+  when: not spaceshipinstalled.stat.exists
+
+- name: Copying aliases file
+  copy:
+    src=/tmp/drewmbpconfigfiles/.aliases
+    dest=~/.aliases
+ 
+- name: Create .emacs.d
+  file:
+    path: ~/.emacs.d
+    state: directory
+ 
+- name: Copying aliases file
+  copy:
+    src=/tmp/drewmbpconfigfiles/.emacs.d/init.el
+    dest=~/.emacs.d/init.el
+
+
+- name: brew favorites
+  homebrew: name={{ item }} state=latest
+  with_items:
+    - bat
+    - tmux
+    - terminal-notifier
+    - youtube-dl
+    - cmus
+    - git
+    - nvim
+    - pianobar
+    - gpg2
+    - python3
+    - mpw
+    - exa
+    - tmux
+    - bash-completion
+    - nvm
+
+- name: brew cask favorites
+  homebrew_cask: name={{ item }} state=upgraded
+  with_items:
+    - emacs
+    - google-chrome
+    - gpg-suite
+    - iterm2
+    - hammerspoon
+    - mtmr
+    - firefox
+    - synergy
+    - mpv
+
+- name: Create .nvm
+  file:
+    path: ~/.nvm
+    state: directory
+ 
