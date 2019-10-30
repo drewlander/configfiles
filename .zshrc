@@ -118,7 +118,6 @@ if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
 
-export HOMEBREW_GITHUB_API_TOKEN=a3477eeb89071422017836bce17e0e5a49ecb4e6
 export PATH=/Applications/Emacs.app/Contents/MacOS/bin:$PATH
 #eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
