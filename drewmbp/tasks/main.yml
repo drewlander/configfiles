@@ -5,6 +5,14 @@
     update_homebrew: yes
     upgrade_all: yes
 
+- name: clone powerline fonts
+  git:
+    repo=https://github.com/powerline/fonts.git
+    dest=/tmp/fonts
+
+- name: install fonts
+  command: bash /tmp/fonts/install.sh
+
 - name: Cloning configfiles
   git:
     repo=https://github.com/drewlander/configfiles.git
@@ -38,6 +46,11 @@
   command: ln -s ~/.oh-my-zsh/themes/spaceship-prompt/spaceship.zsh-theme ~/.oh-my-zsh/themes/spaceship.zsh-theme
   when: not spaceshipinstalled.stat.exists
 
+- name: Copying hammerspoon fdirectory
+  copy:
+    src=/tmp/drewmbpconfigfiles/.hammerspoon
+    dest=~/.hammerspoon
+ 
 - name: Copying aliases file
   copy:
     src=/tmp/drewmbpconfigfiles/.aliases
