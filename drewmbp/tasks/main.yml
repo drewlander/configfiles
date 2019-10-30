@@ -68,6 +68,7 @@
     - tmux
     - bash-completion
     - nvm
+    - hugo
 
 - name: brew cask favorites
   homebrew_cask: name={{ item }} state=upgraded
