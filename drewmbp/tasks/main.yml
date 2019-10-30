@@ -95,6 +95,14 @@
     - hugo
     - rustup
     - golang
+    - fd
+    - hexyl
+    - jq
+    - mdcat
+    - ripgrep
+    - fzf
+    - tig
+    - z
 
 - name: brew cask favorites
   homebrew_cask: name={{ item }} state=upgraded
@@ -111,6 +119,7 @@
     - tor-browser
     - amazon-music
     - xscreensaver
+    - podman
 
 - name: Create .nvm
   file:
