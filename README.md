@@ -6,4 +6,4 @@ Running bootstrap.sh should work. The best part is, since git is not included by
 
 Maybe someone will find this useful apart from myself. Otherwise this is a nice thing to run and just have my machine ready to rumble
 
-
+Don't forget to run: all-the-icons-install-fonts in Emacs for neotree to get those fancy icons
