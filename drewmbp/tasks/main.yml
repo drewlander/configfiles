@@ -1,6 +1,10 @@
 ---
 # tasks file for drewmbp
 
+- homebrew:
+    update_homebrew: yes
+    upgrade_all: yes
+
 - name: Cloning configfiles
   git:
     repo=https://github.com/drewlander/configfiles.git
@@ -43,7 +47,27 @@
   file:
     path: ~/.emacs.d
     state: directory
+
+- name: Create go-workspace
+  file:
+    path: ~/go-workspace
+    state: directory
  
+- name: Create go-workspace
+  file:
+    path: ~/go-workspace/src
+    state: directory
+
+- name: Create go-workspace
+  file:
+    path: ~/go-workspace/pkg
+    state: directory
+
+- name: Create go-workspace
+  file:
+    path: ~/go-workspace/bin
+    state: directory
+
 - name: Copying aliases file
   copy:
     src=/tmp/drewmbpconfigfiles/.emacs.d/init.el
@@ -69,6 +93,8 @@
     - bash-completion
     - nvm
     - hugo
+    - rustup
+    - golang
 
 - name: brew cask favorites
   homebrew_cask: name={{ item }} state=upgraded
@@ -82,6 +108,9 @@
     - firefox
     - synergy
     - mpv
+    - tor-browser
+    - amazon-music
+    - xscreensaver
 
 - name: Create .nvm
   file:
