@@ -1,0 +1,6 @@
+alias vim="nvim"
+alias vimdiff="nvim -d"
+alias random_password='openssl rand -base64 30'Q
+alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+alias gl="git log --graph --abbrev-commit --date-order --format=format:'%Cblue%h%Creset%C(bold red)%d%Creset %s <%an> %Cgreen(%ar)%Creset' --all"
+alias ssh="/usr/local/bin/ssh"
